@@ -1,6 +1,5 @@
-const gravConst = 1;
+var gravConst = 1;
 class Body {
-   
     constructor(x, y, diam, mass, grav, name, strk, fll, startingVelx, startingVely) {
         this.bodyName = name;
         this.pos   = createVector(x, y);
@@ -17,22 +16,19 @@ class Body {
         this.fuelStation = 10;
         this.orb = true;
         this.docked = false;
-
         this.perihelion = 10000;
         this.aphelion = 0;
         this.perihelionPos = createVector(0,0);
         this.aphelionPos = createVector(0,0);
         this.img;
         this.info = {};
-    }
+    };
     drawBody(x,y, diam){
         if (this.bodyName == "Saturn"){
             strokeWeight(diam/20);
             stroke(255);
             fill(51);
             ellipse(x, y, diam+diam*.9, diam/2);
-            
-            
         }
         // if (this.diam < this.origDiam/10){
         //     this.diam = this.origDiam/10;
@@ -119,4 +115,4 @@ class Body {
         return direction;
             
     }
-}
+};
