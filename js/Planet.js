@@ -20,15 +20,15 @@ class Body {
         this.aphelion = 0;
         this.perihelionPos = createVector(0,0);
         this.aphelionPos = createVector(0,0);
-        this.img;
+        this.img = null;
         this.info = {};
-    };
+    }
     drawBody(x,y, diam){
         if (this.bodyName == "Saturn"){
             strokeWeight(diam/20);
             stroke(255);
             fill(51);
-            ellipse(x, y, diam+diam*.9, diam/2);
+            ellipse(x, y, diam+diam*0.9, diam/2);
         }
         // if (this.diam < this.origDiam/10){
         //     this.diam = this.origDiam/10;
@@ -43,7 +43,7 @@ class Body {
         strokeWeight(2);
         for (var i =4; i<this.trail.length;i++){
             stroke(255, i);
-            line(this.trail[i].x, this.trail[i].y, this.trail[i-1].x, this.trail[i-1].y)
+            line(this.trail[i].x, this.trail[i].y, this.trail[i-1].x, this.trail[i-1].y);
         }
     }
     applyForce(force1){
@@ -86,7 +86,7 @@ class Body {
 
             if (body.mission.sP == this.bodyName){
                 body.mission.retrieve();
-            };
+            }
             if (body.mission.retrieved && body.mission.eP == this.bodyName){
                 body.money += body.mission.reward;
                 body.mission.delivered();
@@ -115,4 +115,4 @@ class Body {
         return direction;
             
     }
-};
+}
