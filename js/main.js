@@ -57,8 +57,8 @@ function setup() {
     for (var i = 0;i<astNum;i++){
         // Finds points along the orbit's circumference
         // then find the rotated velocity of the astroid so that they each have circular orbits
-        var x = sun.pos.x + 400 * Math.cos(360*(i/astNum)*(Math.PI/180));
-        var y = sun.pos.y + 400 * Math.sin(360*(i/astNum)*(Math.PI/180));
+        var x = sun.pos.x + random(-100,100) + 400  * Math.cos(360*(i/astNum)*(Math.PI/180));
+        var y = sun.pos.y + random(-100,100) + 400  * Math.sin(360*(i/astNum)*(Math.PI/180));
         var velX = -Math.sin(360*(i/astNum)*(Math.PI/180)) * 5;
         /* Matrix Multiplication
            __             __   _ _
