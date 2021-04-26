@@ -53,10 +53,23 @@ function setup() {
     } 
 
     // Create Astroid Belt
-    for (var i = 0;i<4;i++){
-        var x = width/2  + (height/2-400) * Math.cos(i*(Math.PI/2));
-        var y = height/2 + (height/2-400) * Math.sin(i*(Math.PI/2));
-        var astroid = new Astroid(x,y,5);
+    var astNum = 20;
+    for (var i = 0;i<astNum;i++){
+        // Finds points along the orbit's circumference
+        // then find the rotated velocity of the astroid so that they each have circular orbits
+        var x = sun.pos.x + 400 * Math.cos(360*(i/astNum)*(Math.PI/180));
+        var y = sun.pos.y + 400 * Math.sin(360*(i/astNum)*(Math.PI/180));
+        var velX = -Math.sin(360*(i/astNum)*(Math.PI/180)) * 5;
+        /* Matrix Multiplication
+           __             __   _ _
+           | cos(θ)  -sin(θ)| | 0 |
+           | sin(θ)   cos(θ)| | 5 |
+           __              __  _ _
+        */
+        var velY = Math.cos(360*(i/astNum)*(Math.PI/180)) * 5;  
+        // Thank you Linear Algebra!!!
+        var astroid = new Astroid(x, y, velX, velY, i);
+
         astroids.push(astroid);
     };
     // var ast = new Astroid();
@@ -172,6 +185,14 @@ function draw() {
                 }
             }
         }
+        // astroid
+        for (var i = 0; i<astroids.length; i++){
+            astroids[i].applyForce(stars[0].orbit(astroids[i]));
+            astroids[i].update();
+            astroids[i].drawBody();
+            astroids[i].drawTrail();
+        }
+
         stars[0].drawBody();
         for (var i = 0; i<entities.length; i++){
             entities[i].applyForce(stars[0].orbit(entities[i]));
@@ -289,6 +310,7 @@ function draw() {
             astroids[i].applyForce(stars[0].orbit(astroids[i]));
             astroids[i].update();
             astroids[i].drawBody();
+            astroids[i].drawTrail();
         }
 
 

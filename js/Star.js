@@ -6,8 +6,6 @@ class Star {
     constructor(x, y, diam, mass, grav, name, strk, fll) {
         this.bodyName = name;
         this.pos   = createVector(document.documentElement.clientWidth/2, document.documentElement.clientHeight/2);
-        
-        
         this.diam  = diam;
         this.origDiam = diam;
         this.mass  = mass;
@@ -32,9 +30,6 @@ class Star {
         circle(this.pos.x, this.pos.y, this.diam);
     }
     orbit(body) {
-        
-        
-            
         //direction
         var direction = createVector();
         var temp = createVector(this.pos.x, this.pos.y);
